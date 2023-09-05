@@ -12,6 +12,13 @@
     <a href="{{route('mehedi')}}">Mehedi</a> <br>
     <a href="{{route('user')}}">User Information</a>
    </nav>
-    <h1>Wellcome </h1>
+    <h1>This is user Information </h1>
+
+    <ol>
+        @foreach ($users as $info)
+    <li>{{$info->name}}</li>
+    </ol>    
+   
+        @endforeach
 </body>
 </html>
