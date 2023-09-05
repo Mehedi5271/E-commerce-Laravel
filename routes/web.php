@@ -10,6 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/About_us',[PublicController::class,'about'] )->name('about');
-Route::get('/mehedi',[PublicController::class,'hello'] );
+Route::get('/mehedi_profile',[PublicController::class,'hello'] )->name('mehedi');
+Route::get('/user_information',[PublicController::class,'info'] )->name('user');
 
 
