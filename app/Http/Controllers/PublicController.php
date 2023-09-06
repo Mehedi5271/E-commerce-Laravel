@@ -21,4 +21,6 @@ class PublicController extends Controller
 
         return view('user',['users'=> $alluser]);
     }
+
+    
 }
