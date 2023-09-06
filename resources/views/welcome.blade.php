@@ -13,5 +13,12 @@
     <a href="{{route('user')}}">User Information</a>
    </nav>
     <h1>Wellcome </h1>
+
+ 
+
+ 
+ 
+ 
+
 </body>
 </html>
