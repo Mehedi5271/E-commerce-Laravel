@@ -10,7 +10,8 @@
    <nav>
     <a href="{{route('about')}}">About</a> <br>
     <a href="{{route('mehedi')}}">Mehedi</a> <br>
-    <a href="{{route('user')}}">User Information</a>
+    <a href="{{route('user')}}">User Information</a> <br>
+    <a href="{{route('dashboard')}}">Dashboard</a>
    </nav>
     <h1>Wellcome </h1>
 
