@@ -14,6 +14,8 @@ Route::get('/', function () {
 Route::get('/Admin_dashboard',[DashboardController::class,'admin'])->name('dashboard');
 
 Route::get('/product_page',[ProductController::class,'product'])->name('product.index');
+Route::post('/product_page',[ProductController::class,'store'])->name('product.store');
+
 Route::get('/product_page/creat',[ProductController::class,'creat'])->name('product.creat');
 
 Route::get('/About_us',[PublicController::class,'about'] )->name('about');
