@@ -15,6 +15,8 @@ Route::get('/Admin_dashboard',[DashboardController::class,'admin'])->name('dashb
 
 Route::get('/product_page',[ProductController::class,'product'])->name('product.index');
 Route::post('/product_page',[ProductController::class,'store'])->name('product.store');
+Route::get('/product_page/{id}',[ProductController::class,'edit'])->name('product.edit');
+Route::patch('/product_page/{id}',[ProductController::class,'update'])->name('product.update');
 
 Route::get('/product_page/creat',[ProductController::class,'creat'])->name('product.creat');
 

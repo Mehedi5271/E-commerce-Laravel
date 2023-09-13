@@ -23,18 +23,24 @@ Product
                 Product Information <a href="{{route('product.creat')}}" class="btn btn-sm btn-outline-primary">Add Product</a>
             </div>
             <div class="card-body">
+                @if (session('status'))
+                    <div class="alert alert-success">{{ session('status') }}</div>
+                @endif
+
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
                             <th>Title</th>
                             <th>Price</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Title</th>
                             <th>Price</th>
+                            <th>Description</th>
                             <th>Status</th>
                            
                         </tr>
@@ -45,9 +51,12 @@ Product
                         
                         <tr>
                             <td>{{$product->title}}</td>
-                            <td>{{$product->title}}</td>
                             <td>{{$product->price}}</td>
+                            {{-- <td>{{$product->description}}</td> --}}
                             <td>{{$product->is_active}}</td>
+                            <td>
+                                <a href="{{route('product.edit',['id'=> $product->id])}}">Edit</a>
+                            </td>
                         </tr>
                 
                         @endforeach
