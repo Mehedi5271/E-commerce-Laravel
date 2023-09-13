@@ -20,12 +20,13 @@ Add Product
 @endif --}}
 
 
-        <form action="{{route('product.store')}}" method="POST">
+        <form action="{{route('product.update',['id'=>$product->id])}}" method="POST">
             @csrf
+            @method('patch')
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" name="title" id="title" type="text" placeholder="Enter Title" value="{{ old('title') }}" />
+                        <input class="form-control" name="title" id="title" type="text" placeholder="Enter Title" value="{{ old('title',$product->title )}}" />
                         <label for="inputFirstName">Title</label> <br>
                         @error('title')
                            <div class="alert alert-danger">{{ $message }}</div>
@@ -34,7 +35,7 @@ Add Product
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" name="price" id="price" type="number" placeholder="Enter Price"value="{{ old('price') }}" />
+                        <input class="form-control" name="price" id="price" type="number" placeholder="Enter Price"value="{{ old('price',$product->price) }}" />
                         <label for="price">Price</label> <br>
                         @error('price')
                           <div class="alert alert-danger">{{ $message }}</div>
@@ -43,7 +44,7 @@ Add Product
                 </div>
             </div>
             <div class="form-floating mb-3">
-                <textarea class="form-control" name="description" id="description" value="{{ old('description') }}"></textarea>
+                <textarea  class="form-control" name="description" id="description" id="description" >{{old('description',$product->description)}}</textarea>
                 <label for="description">Description</label> <br>
                 @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
