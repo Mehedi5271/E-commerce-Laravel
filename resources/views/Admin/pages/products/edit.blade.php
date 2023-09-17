@@ -56,7 +56,7 @@ Add Product
             </div>
             <div class="mt-4 mb-0">
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    <button type="submit" class="btn btn-primary btn-block">Update</button>
                 </div>
             </div>
         </form>

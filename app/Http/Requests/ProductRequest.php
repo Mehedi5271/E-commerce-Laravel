@@ -21,10 +21,12 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        $productId = $this->route('product');
         return [
-            'title' => 'required|min:5|unique:products',
+            'title' => 'required|min:5|unique:products,title,' . $productId,
             'price' => 'required',
             'description' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ];
     }
 
@@ -35,6 +37,7 @@ class ProductRequest extends FormRequest
     'title.min' => 'Title a minimum 5 ta word a dite hobe',
     'price.required' => 'Price bosao',
     'description.required' => 'Description bosao',
+    'image.required'=> 'Image bosao',
     
 ];
 }
