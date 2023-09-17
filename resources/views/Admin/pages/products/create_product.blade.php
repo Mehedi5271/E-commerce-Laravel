@@ -9,18 +9,7 @@ Add Product
     <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
     <div class="card-body">
 
-        {{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
-
-
-        <form action="{{route('product.store')}}" method="POST">
+        <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -49,13 +38,21 @@ Add Product
                 <div class="alert alert-danger">{{ $message }}</div>
               @enderror
             </div>
+            <div class="form-floating mb-3 mb-md-0">
+                <input class="form-control" name="image" id="price" type="file" accept="image/*" />
+                <label for="image">Image</label> <br>
+                @error('image')
+                  <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            
             <div class="form-check">
                 <input class="form-check-input" name="is_active" type="checkbox" value="1" id="is_active" checked>
                 <label class="form-check-label" for="is_active">Is Active</label>
             </div>
             <div class="mt-4 mb-0">
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    <button type="submit" class="btn btn-primary btn-block">Add Product</button>
                 </div>
             </div>
         </form>

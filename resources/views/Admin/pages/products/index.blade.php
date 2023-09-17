@@ -20,8 +20,10 @@ Product
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Product Information <a href="{{route('product.creat')}}" class="btn btn-sm btn-outline-primary">Add Product</a>
+                Product Information <a href="{{route('product.create')}}" class="btn btn-sm btn-outline-primary">Add Product</a>
             </div>
+
+            
             <div class="card-body">
                 @if (session('status'))
                     <div class="alert alert-success">{{ session('status') }}</div>
@@ -55,7 +57,15 @@ Product
                             {{-- <td>{{$product->description}}</td> --}}
                             <td>{{$product->is_active}}</td>
                             <td>
-                                <a href="{{route('product.edit',['id'=> $product->id])}}">Edit</a>
+                                <a class="btn btn-sm btn-info" href="{{route('product.show',['id'=> $product->id])}}">Show</a>
+                                <a class="btn btn-sm btn-warning" href="{{route('product.edit',['id'=> $product->id])}}">Edit</a>
+                                <form style="display: inline" action="{{route('product.delete',['id'=> $product->id])}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete</button>
+                                
+                                </form>
+
                             </td>
                         </tr>
                 
