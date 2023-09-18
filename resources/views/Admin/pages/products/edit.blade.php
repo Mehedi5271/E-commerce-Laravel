@@ -20,7 +20,7 @@ Add Product
 @endif --}}
 
 
-        <form action="{{route('product.update',['id'=>$product->id])}}" method="POST">
+        <form action="{{route('product.update',['id'=>$product->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="row mb-3">
@@ -49,6 +49,14 @@ Add Product
                 @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
               @enderror
+            </div>
+            <img style="height: 100px" src="{{asset('storage/images/'.$product->image)}}" alt="">
+            <div class="form-floating mb-3 mb-md-0">
+                <input class="form-control" name="image" id="price" type="file" accept="image/*" />
+                <label for="image">Image</label> <br>
+                @error('image')
+                  <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-check">
                 <input class="form-check-input" name="is_active" type="checkbox" value="1" id="is_active" checked>
