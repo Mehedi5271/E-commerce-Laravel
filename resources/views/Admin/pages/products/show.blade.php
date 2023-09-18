@@ -29,6 +29,7 @@ Product
               <p>Price: {{$product->price}}</p>
               <p>Description: {{$product->description}}</p>
               <p>Active: {{$product->is_active?'Active':'Disable'}}</p>
+              <p>Image: <img style="height: 100px" src="{{asset('storage/images/'.$product->image)}}" alt=""> </p>
             </div>
         </div>
     </div>

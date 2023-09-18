@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class ProductController extends Controller
 {
@@ -26,9 +27,10 @@ class ProductController extends Controller
        
 
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(storage_path('app/public/images'), $imageName);
 
-        dd('done');
+        $image = Image::make( $request->file('image'))->resize(300, 200);
+        $image->brightness(30);
+        $image->save(storage_path('app/public/images/'). $imageName);
 
             Product::create([
                 'title' => $request->title,
@@ -62,12 +64,24 @@ class ProductController extends Controller
 
     public function update(ProductUpdate $request, $id)
     { 
+        if($request->hasFile('image')){
+            $imageName = time() . '.' . $request->image->extension();
+
+            $image = Image::make( $request->file('image'))->resize(300, 200);
+            $image->brightness(30);
+            $image->save(storage_path('app/public/images/'). $imageName);
+
+        }
+       
+
         $product = Product::findOrFail($id);
         $product->update([
             'title' => $request->title,
                 'price' => $request->price,
                 'description' => $request->description,
-                'is_active' => $request->is_active??0
+                'is_active' => $request->is_active??0,
+                'image' => $imageName ?? $product->image
+
         ]);
             
             return redirect()->route('product.index')->withStatus('Data Updated successfully');
