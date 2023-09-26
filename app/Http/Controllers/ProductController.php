@@ -93,6 +93,42 @@ class ProductController extends Controller
         return redirect()->route('product.index')->withStatus('Data Deleted successfully');
 
     }
+
+ 
+
+    
+    public function trash(){
+
+        $products = Product::latest()->onlyTrashed()->get();    // $products = Product::all();
+       
+        //  dd($products);
+        return view('Admin.pages.products.trash',compact('products'));
+       
+        
+    }
+
+    public function restore($id)
+    {
+       $product = Product::onlyTrashed()->find($id);
+    //    dd($product);
+
+       $product->restore();
+        return redirect()->route('product.trash')->withStatus('Data Restore successfully');
+
+    }
+
+    public function destroy($id)
+    {
+       $product = Product::onlyTrashed()->find($id);
+    //    dd($product);
+
+       $product->forceDelete();
+        return redirect()->route('product.trash')->withStatus('Data Deleted successfully');
+
+    }
+    
+
+  
     
     
 
