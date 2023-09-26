@@ -20,8 +20,7 @@ Product
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Product Information <a href="{{route('product.create')}}" class="btn btn-sm btn-outline-primary">Add Product</a>
-                <a href="{{ route('product.trash') }}" class="btn btn-sm btn-outline-info">Trash List</a>
+                Product Information <a href="{{ route('product.index') }}" class="btn btn-sm btn-outline-info"> List</a>
             </div>
             
 
@@ -59,12 +58,16 @@ Product
                             {{-- <td>{{$product->description}}</td> --}}
                             <td>{{$product->is_active}}</td>
                             <td>
-                                <a class="btn btn-sm btn-info" href="{{route('product.show',['id'=> $product->id])}}">Show</a>
-                                <a class="btn btn-sm btn-warning" href="{{route('product.edit',['id'=> $product->id])}}">Edit</a>
-                                <form style="display: inline" action="{{route('product.delete',['id'=> $product->id])}}" method="POST">
+                                <form style="display: inline" action="{{route('product.restore', $product->id)}}" method="POST">
+                                    @csrf
+                                    @method('patch')
+                                    <button class="btn btn-sm btn-warning" type="submit" onclick="return confirm('Are you sure you want to Restore?')" >Restore</button>
+                                </form>
+
+                                <form style="display: inline" action="{{route('product.destroy', $product->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete</button>
+                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete permanently ?')" >Delete</button>
                                 
                                 </form>
 
