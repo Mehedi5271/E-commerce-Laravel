@@ -22,6 +22,7 @@ Product
                 <i class="fas fa-table me-1"></i>
                 Product Information <a href="{{route('product.create')}}" class="btn btn-sm btn-outline-primary">Add Product</a>
                 <a href="{{ route('product.trash') }}" class="btn btn-sm btn-outline-info">Trash List</a>
+                <a href="{{ route('product.pdf') }}" class="btn btn-sm btn-outline-success">PDF</a>
             </div>
             
 

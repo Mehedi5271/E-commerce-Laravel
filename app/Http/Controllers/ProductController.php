@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Image;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class ProductController extends Controller
 {
@@ -125,6 +127,13 @@ class ProductController extends Controller
        $product->forceDelete();
         return redirect()->route('product.trash')->withStatus('Data Deleted successfully');
 
+    }
+
+    public function downloadPdf()
+    {
+        $products = product::latest()->take(10)->get();
+        $pdf = Pdf::loadView('Admin.pages.products.pdf', compact('products'));
+        return $pdf->download('product-list.pdf');
     }
     
 

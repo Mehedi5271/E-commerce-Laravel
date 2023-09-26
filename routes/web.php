@@ -24,6 +24,8 @@ Route::get('/products/{id}/edit',[ProductController::class, 'edit'])->name('prod
 Route::patch('/products/{id}',[ProductController::class, 'update'])->name('product.update');
 Route::patch('/product/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
 Route::delete('/product/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/product/downloadPdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
+
 
 Route::get('/About_us',[PublicController::class,'about'] )->name('about');
 Route::get('/mehedi_profile',[PublicController::class,'hello'] )->name('mehedi');
