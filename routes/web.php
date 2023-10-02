@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\PublicController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -37,6 +38,8 @@ Route::get('/dashboard',[DashboardController::class,'admin'])->name('dashboard')
 
 
 Route::middleware('auth')->prefix('admin')->group(function(){
+
+    Route::get('/users',[UserController::class, 'index'])->name('users.index');
 
     Route::get('/products',[ProductController::class, 'product'])->name('product.index');
     Route::get('/products/create',[ProductController::class, 'create'])->name('product.create');
