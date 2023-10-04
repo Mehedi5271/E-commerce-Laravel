@@ -100,7 +100,7 @@ class ProductController extends Controller
 
     
     public function trash(){
-
+        $this->authorize('prouct-trash-list');
         $products = Product::latest()->onlyTrashed()->get();    // $products = Product::all();
        
         //  dd($products);
