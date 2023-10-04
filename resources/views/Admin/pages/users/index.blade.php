@@ -56,7 +56,7 @@ User List
                             <td>{{$loop->iteration}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->role_id}}</td>
+                            <td>{{$user->role->name}}</td>
                             {{-- <td>{{$product->description}}</td> --}}
                             <td>
 
