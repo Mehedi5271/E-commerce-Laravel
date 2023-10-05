@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Policies\ProductPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -22,9 +23,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('delete-product', function (User $user) {
-            return $user->isProductManager();
-        });   
+        Gate::define('delete-product', [ProductPolicy::class, 'delete']);   
         Gate::define('product-trash-list', function (User $user) {
             return $user->isAdmin();
         }); 
