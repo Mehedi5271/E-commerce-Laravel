@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 
@@ -11,7 +12,8 @@ class PublicController extends Controller
 {
     public function welcome(){
         $products = Product::latest()->paginate(12);
-        return view('welcome', compact('products'));
+        $categories = Category::Pluck('title','id')->toArray();
+        return view('welcome', compact('products','categories'));
     }
     function about(){
         return view('about');

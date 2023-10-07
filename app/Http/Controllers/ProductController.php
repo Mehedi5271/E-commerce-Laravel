@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdate;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -16,8 +17,7 @@ class ProductController extends Controller
 {
    public function product(){
         $products = Product::latest()->get();    // $products = Product::all();
-       
-        // dd($products);
+        
         return view('Admin.pages.products.index',compact('products'));
     }
     public function create(){

@@ -3,10 +3,13 @@
     <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
     <!-- Navbar Search-->
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0 text-white">
         {{auth()->user()->name}} [{{auth()->user()->role->name}}]
     </div>
+    
+    
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">
@@ -18,6 +21,7 @@
                 <li><a class="dropdown-item" href="{{route('welcome')}}">Home Page</a></li>
 
                 <li>
+                   
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -28,6 +32,8 @@
                             LogOut
                        </a>
                     </form>
+                    @dd($categories)
+
                 </li>
             </ul>
         </li>
