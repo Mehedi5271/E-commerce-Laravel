@@ -35,7 +35,7 @@
   <body>
     
 <header>
- <x-partials.navbar :categories='$categories' />
+ <x-partials.navbar :categories='$categories'/>
 </header>
 
 <main>

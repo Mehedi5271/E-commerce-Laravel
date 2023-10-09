@@ -12,7 +12,7 @@ class PublicController extends Controller
 {
     public function welcome(){
         $products = Product::latest()->paginate(12);
-        $categories = Category::Pluck('title','id')->toArray();
+        $categories = Category::pluck('title','id')->toArray();
         return view('welcome', compact('products','categories'));
     }
     function about(){
@@ -31,3 +31,4 @@ class PublicController extends Controller
 
     
 }
+

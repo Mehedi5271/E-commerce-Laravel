@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role_id');
-
-            // $table->unsignedBigInteger('role_id')->default('3');
+            // $table->dropColumn('role_id');
+            $table->unsignedBigInteger('role_id')->default('2');
 
         });
     }
