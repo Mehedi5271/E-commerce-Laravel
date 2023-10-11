@@ -18,8 +18,8 @@
               Catagory
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              @foreach ($categories as $categoryId => $categoryTitle)
-              <li><a class="dropdown-item" href="#">{{$categoryTitle}}</a></li>
+              @foreach ($categories as $slug => $title)
+              <li><a class="dropdown-item" href="{{route('category.products', $slug)}}">{{$title}}</a></li>
 
               @endforeach
              
