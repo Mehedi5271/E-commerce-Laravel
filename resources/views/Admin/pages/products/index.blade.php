@@ -39,16 +39,19 @@ Product
                         <tr>
                             <th>Title</th>
                             <th>Price</th>
+                            <th>Category</th>
                             <th>Status</th>
                             <th>Action</th>
+                        
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Title</th>
                             <th>Price</th>
-                            <th>Description</th>
+                            <th>Category</th>
                             <th>Status</th>
+                            <th>Action</th>
                            
                         </tr>
                     </tfoot>
@@ -59,7 +62,7 @@ Product
                         <tr>
                             <td>{{$product->title}}</td>
                             <td>{{$product->price}}</td>
-                            {{-- <td>{{$product->description}}</td> --}}
+                            <td>{{$product->category->title}}</td>
                             <td>{{$product->is_active}}</td>
                             <td>
                                 <a class="btn btn-sm btn-info" href="{{route('product.show',['id'=> $product->id])}}">Show</a>
