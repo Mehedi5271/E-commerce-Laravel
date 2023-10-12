@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Image;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
+ 
 
 
 class ProductController extends Controller
@@ -36,6 +38,7 @@ class ProductController extends Controller
 
             Product::create([
                 'title' => $request->title,
+                'slug' => Str::slug($request->title),
                 'price' => $request->price,
                 'description' => $request->description,
                 'is_active' => $request->is_active??0,
@@ -79,10 +82,11 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->update([
             'title' => $request->title,
-                'price' => $request->price,
-                'description' => $request->description,
-                'is_active' => $request->is_active??0,
-                'image' => $imageName ?? $product->image
+            'slug' => Str::slug($request->title),
+            'price' => $request->price,
+            'description' => $request->description,
+            'is_active' => $request->is_active??0,
+            'image' => $imageName ?? $product->image
 
         ]);
             

@@ -36,6 +36,15 @@ class PublicController extends Controller
         return view('user',['users'=> $alluser]);
     }
 
+    public function productDetails($slug){
+       $product = Product::where('slug', $slug)->firstOrFail();
+    //    dd($product);
+       $categories = Category::pluck('title','slug')->toArray();
+
+       return view('product-details', compact('product','categories'));
+
+    }
+
     
 }
 
