@@ -1,4 +1,4 @@
-<x-master :categories='$categories'>
+<x-master >
   <x-slot:title>
       E-Shop | Home Page
   </x-slot>
