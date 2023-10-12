@@ -12,15 +12,15 @@ class PublicController extends Controller
 {
     public function welcome(){
         $products = Product::latest()->paginate(12);
-        $categories = Category::pluck('title','slug')->toArray();
-        return view('welcome', compact('products','categories'));
+        // $categories = Category::pluck('title','slug')->toArray();
+        return view('welcome', compact('products'));
     }
     public function categoryWiseProducts($slug){
         $category = Category::where('slug', $slug)->firstOrFail();
         $products = $category->products; 
         // dd($products);
-        $categories = Category::pluck('title','slug')->toArray();
-        return view('category_wise_product', compact('products','categories'));
+        // $categories = Category::pluck('title','slug')->toArray();
+        return view('category_wise_product', compact('products'));
     }
     function about(){
         return view('about');
@@ -39,9 +39,9 @@ class PublicController extends Controller
     public function productDetails($slug){
        $product = Product::where('slug', $slug)->firstOrFail();
     //    dd($product);
-       $categories = Category::pluck('title','slug')->toArray();
+    //    $categories = Category::pluck('title','slug')->toArray();
 
-       return view('product-details', compact('product','categories'));
+       return view('product-details', compact('product'));
 
     }
 

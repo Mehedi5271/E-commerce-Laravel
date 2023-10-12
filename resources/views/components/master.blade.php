@@ -35,10 +35,11 @@
   <body>
     
 <header>
- <x-partials.navbar :categories='$categories'/>
+ <x-partials.navbar />
 </header>
 
 <main>
+ 
   <div class="album py-5 bg-light">
     <div class="container">
 
