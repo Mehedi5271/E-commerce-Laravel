@@ -62,7 +62,7 @@ Product
                         <tr>
                             <td>{{$product->title}}</td>
                             <td>{{$product->price}}</td>
-                            <td>{{$product->category->title}}</td>
+                            {{-- <td>{{ $product->category->title }}</td> --}}
                             <td>{{$product->is_active}}</td>
                             <td>
                                 <a class="btn btn-sm btn-info" href="{{route('product.show',['id'=> $product->id])}}">Show</a>

@@ -13,13 +13,15 @@ Route::get('/',[PublicController::class, 'welcome'])->name('welcome');
 // Route::get('/dashboard', function () {
     //     return view('dashboard');
     // })->middleware(['auth', 'verified'])->name('dashboard');
-
-    require __DIR__.'/auth.php';
     
     Route::get('/About_us',[PublicController::class,'about'] )->name('about');
     Route::get('/mehedi_profile',[PublicController::class,'hello'] )->name('mehedi');
     Route::get('/user_information',[PublicController::class,'info'] )->name('user');
 
+    require __DIR__.'/auth.php';
+
+    Route::get('/dashboard',[DashboardController::class,'admin'])->name('dashboard')->middleware('auth');
+    
     Route::get('/{slug}',[PublicController::class, 'categoryWiseProducts'])->name('category.products');
     Route::get('/product/{slug}',[PublicController::class, 'productDetails'])->name('product.details');
 
@@ -44,7 +46,6 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::get('/product/downloadPdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
 
 
-    Route::get('/dashboard',[DashboardController::class,'admin'])->name('dashboard');
 
 
 
