@@ -14,6 +14,24 @@ Add Product
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
+                        <select class="form-control" name="category_id" id="category_id">
+                            <option value="">Select Category</option>
+                            @foreach ($categories as $categoryID=>$categoryTitle)
+                            <option value="{{$categoryID}}">{{$categoryTitle}}</option>
+
+                                
+                            @endforeach
+
+                        </select>
+                        <label for="category_id">Category</label> <br>
+                        @error('category_id')
+                           <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
                         <input class="form-control" name="title" id="title" type="text" placeholder="Enter Title" value="{{ old('title') }}" />
                         <label for="inputFirstName">Title</label> <br>
                         @error('title')

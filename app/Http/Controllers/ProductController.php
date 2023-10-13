@@ -23,13 +23,13 @@ class ProductController extends Controller
         return view('Admin.pages.products.index',compact('products'));
     }
     public function create(){
-       
-        return view('Admin.pages.products.create_product');
+        $categories = Category::pluck('title','id')->toArray();
+        return view('Admin.pages.products.create_product', compact('categories'));
     }
     public function store(ProductRequest $request)
     { 
-       
-
+        // dd($request->all());
+    
         $imageName = time() . '.' . $request->image->extension();
 
         $image = Image::make( $request->file('image'))->resize(300, 200);
@@ -37,6 +37,7 @@ class ProductController extends Controller
         $image->save(storage_path('app/public/images/'). $imageName);
 
             Product::create([
+                'category_id' => $request->category_id,
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
                 'price' => $request->price,
