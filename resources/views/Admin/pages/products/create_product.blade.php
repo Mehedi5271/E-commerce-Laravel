@@ -63,6 +63,19 @@ Add Product
                   <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <label for="image">Color</label> <br>
+            <div class="form-floating mb-3 mb-md-0">
+                @foreach ($colors as $colorId => $colorName)
+                    
+                
+                <div class="form-check">
+                    <input class="form-check-input" name="color_id[]" type="checkbox" value="{{$colorId}}" id="{{$colorId}}" >
+                    <label class="form-check-label" for="{{$colorId}}">{{$colorName}}</label>
+                </div>
+                @endforeach
+
+           <br> <br>
             
             <div class="form-check">
                 <input class="form-check-input" name="is_active" type="checkbox" value="1" id="is_active" checked>

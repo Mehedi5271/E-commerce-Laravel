@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdate;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -24,11 +25,13 @@ class ProductController extends Controller
     }
     public function create(){
         $categories = Category::pluck('title','id')->toArray();
-        return view('Admin.pages.products.create_product', compact('categories'));
+        $colors = Color::pluck('name','id')->toArray();
+        
+        return view('Admin.pages.products.create_product', compact('categories','colors'));
     }
     public function store(ProductRequest $request)
     { 
-        // dd($request->all());
+        //  dd($request->all());
     
         $imageName = time() . '.' . $request->image->extension();
 
@@ -36,7 +39,7 @@ class ProductController extends Controller
         $image->brightness(30);
         $image->save(storage_path('app/public/images/'). $imageName);
 
-            Product::create([
+            $Product = Product::create([
                 'category_id' => $request->category_id,
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
@@ -45,6 +48,8 @@ class ProductController extends Controller
                 'is_active' => $request->is_active??0,
                 'image' => $imageName,
             ]);
+
+            $Product->colors()->attach($request->color_id);
             
             // Session::flash('status', 'Data submit successfully');
             // return redirect()->route('product.index')->with('status','Data submit successfully');
