@@ -23,6 +23,28 @@ Add Product
         <form action="{{route('product.update',['id'=>$product->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('patch')
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
+                        <select class="form-control" name="category_id" id="category_id">
+                            <option value="">Select Category</option>
+                            @foreach ($categories as $categoryID=>$categoryTitle)
+                            <option 
+                            value="{{$categoryID}}"
+                             @if($product->category_id == $categoryID) 
+                             selected 
+                             @endif 
+                             >{{$categoryTitle}}</option>     
+                            @endforeach
+
+                        </select>
+                        <label for="category_id">Category</label> <br>
+                        @error('category_id')
+                           <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
@@ -58,6 +80,29 @@ Add Product
                   <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <label for="image">Color</label> <br>
+            <div class="form-floating mb-3 mb-md-0">
+                @foreach ($colors as $colorId => $colorName)
+                    
+                
+                <div class="form-check">
+                    <input 
+                    class="form-check-input" 
+                    name="color_id[]" 
+                    type="checkbox" 
+                    value="{{$colorId}}" 
+                    id="{{$colorId}}" 
+                    @if (in_array($colorId,$selectedColorIds))
+                    checked
+                        
+                    @endif
+
+                    >
+                    <label class="form-check-label" for="{{$colorId}}">{{$colorName}}</label>
+                </div>
+                @endforeach
+
             <div class="form-check">
                 <input class="form-check-input" name="is_active" type="checkbox" value="1" id="is_active" checked>
                 <label class="form-check-label" for="is_active">Is Active</label>

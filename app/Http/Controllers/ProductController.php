@@ -68,7 +68,12 @@ class ProductController extends Controller
     {
         
         $product = Product::findOrFail($id);
-        return view('Admin.pages.products.edit', compact('product'));
+        $categories = Category::pluck('title','id')->toArray();
+
+        $colors = Color::pluck('name','id')->toArray();
+        $selectedColorIds =$product->colors()->pluck('id')->toArray();
+
+        return view('Admin.pages.products.edit', compact('product','categories','colors','selectedColorIds'));
 
         
     }
@@ -95,6 +100,9 @@ class ProductController extends Controller
             'image' => $imageName ?? $product->image
 
         ]);
+
+        $product->colors()->sync($request->color_id);
+
             
             return redirect()->route('product.index')->withStatus('Data Updated successfully');
     }
@@ -132,6 +140,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
        $product = Product::onlyTrashed()->find($id);
+       $product->colors()->detach(); 
     //    dd($product);
 
        $product->forceDelete();
