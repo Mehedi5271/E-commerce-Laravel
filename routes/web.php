@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -44,6 +45,8 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::patch('/product/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
     Route::delete('/product/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::get('/product/downloadPdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
+    Route::post('/add-to-cart', [CartController::class, 'store'])->name('cart.store');
+
 
 
 
