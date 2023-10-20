@@ -18,12 +18,12 @@
                 @csrf 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <input type="hidden" name="" value="{{$product->id}}">
-                        Quantity: <input type="number" name="Quantity" placeholder="Quantity" required>
+                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                        Quantity: <input type="number" name="quantity" placeholder="quantity" required>
                         Color:
                         <select name="color_id" required>
                             @foreach ($product->colors as $color)
-                                <option class={{ $color->id }}>{{ $color->name }}</option>
+                                <option value={{ $color->id }}>{{ $color->name }}</option>
                             @endforeach
                         </select>
                     </div>
