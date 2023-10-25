@@ -7,14 +7,34 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+
+    public function index(){
+
+       
+        return view("cart-products");
+    }
+
     public function store(Request $request){
-        // dd($request->all());
-        CartProduct::create([
-            'user_id'=> auth()->user()->id,
-            'product_id'=> $request->product_id,
-            'quantity'=> $request->quantity,
-            'color_id'=> $request->color_id,
-        ]);
-        dd('created');
+        $qyt = $request->quantity;
+        $productId = $request->product_id;
+        $colorId =  $request->color_id;
+        $cartProduct = auth()->user()->cartProducts()
+                                        ->where('product_id',$productId)
+                                        ->where('color_id',$colorId)
+                                        ->first();
+        if($cartProduct){
+            $qyt += $cartProduct->quantity;
+            $cartProduct->update(['quantity' => $qyt]);
+        } else{
+        auth()->user()->cartProducts()->create([  
+            'product_id'=> $productId,
+        'quantity'=> $qyt,
+        'color_id'=>$colorId,
+         ]);
+           }
+     return back()->with('success','');
+      
+          
     }
 }

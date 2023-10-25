@@ -46,6 +46,7 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::delete('/product/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::get('/product/downloadPdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
     Route::post('/add-to-cart', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/cart-products', [CartController::class, 'index'])->name('cart.products');
 
 
 

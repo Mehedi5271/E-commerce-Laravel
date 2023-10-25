@@ -9,9 +9,13 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
+        @auth
+            
+        
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="{{ route('cart.products') }}">Cart ({{ count(auth()->user()->cartProducts) }})</a>
         </li>
+        @endauth
         <li class="nav-item">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
