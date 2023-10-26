@@ -15,9 +15,9 @@
                 
             <tr>
                 <td>{{$loop->iteration}} </td>
-                <td>{{$cartProduct->product_id}} </td>
-                <td> {{$cartProduct->qty}} </td>
-                <td> 0 </td>
+                <td>{{$cartProduct->product->title}}({{$cartProduct->color->name}}) </td>
+                <td> {{$cartProduct->quantity}} </td>
+                <td> {{$cartProduct->product->price}} </td>
             </tr>
         </tbody>
         @endforeach
