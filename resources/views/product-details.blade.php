@@ -20,12 +20,16 @@
                     <div class="btn-group">
                         <input type="hidden" name="product_id" value="{{$product->id}}">
                         Quantity: <input type="number" name="quantity" placeholder="quantity" required>
+                        @if (count ($product->colors))
+                            
                         Color:
                         <select name="color_id" required>
                             @foreach ($product->colors as $color)
                                 <option value={{ $color->id }}>{{ $color->name }}</option>
                             @endforeach
                         </select>
+                        @endif
+
                     </div>
                     <div>
                         <button type="submit"  class="btn btn-sm btn-outline-primary">ADD TO CART</button>

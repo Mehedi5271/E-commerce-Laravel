@@ -13,8 +13,12 @@
                   <p class="card-text"></p>
                   <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                          <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                          <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                       
+                            
+                          {{-- <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-outline-secondary">View</a> --}}
+                            <a href="{{ route('product.details', $product->slug) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                           
+ 
                       </div>
                       <small class="text-muted">{{ $product->created_at->diffForHumans() }}</small>
                   </div>
