@@ -19,7 +19,7 @@
                 <td>  {{$loop->iteration}} </td>
                 <td>{{$cartProduct->product->title}} {{$cartProduct->color ? '-'.$cartProduct->color->name:null}} </td>
                 <td > {{$cartProduct->quantity}} </td>
-                <td class="price text-end"> {{$cartProduct->product->price}} </td>
+                <td class="price text-end"> {{$cartProduct->quantity*$cartProduct->product->price}} </td>
             </tr>
         </tbody>
         @endforeach
@@ -33,9 +33,31 @@
     const removeBtn = document.querySelectorAll('.remove-btn');
     removeBtn.forEach(function(btn){
         btn.addEventListener('click', function(){
-            btn.parentElement.parentElement.remove()
-            alert('deleted')
-            updateTotalPrice()
+
+            const id =btn.getAttribute('data-id');
+
+            fetch('/cart-products/'+id, {
+            method: 'DELETE',
+            
+            headers: {
+                     'X-CSRF-TOKEN': '{{csrf_token()}}'
+                      }
+
+                 })
+                 .then(res => res.json()) 
+                 .then(data=>{
+                    if(data.success==true){
+                        btn.parentElement.parentElement.remove();
+                        updateTotalPrice();
+                        alert(data.message)
+                    } else{
+                        alert('somethings went wrong') 
+                    }
+
+                    })
+            .catch(err => console.log(err));
+
+           
         })            
     }) 
     updateTotalPrice()

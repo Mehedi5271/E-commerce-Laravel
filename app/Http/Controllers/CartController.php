@@ -37,4 +37,23 @@ class CartController extends Controller
       
           
     }
+
+    public function deleteIteam($id)
+    {
+        try {
+            auth()->user()->cartProducts()->where('id', $id)->delete();
+
+            return response()->json([
+                'success'=> true,
+                'message'=> 'Iteam removes from card'
+            ]);
+
+        }catch(\Exception $e){
+            return response()->json([
+                'success'=> false,
+                'message'=> $e->getMessage()
+            ]);
+      
+    }
+}
 }

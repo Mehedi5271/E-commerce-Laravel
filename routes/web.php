@@ -47,15 +47,16 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::get('/product/downloadPdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
     Route::post('/add-to-cart', [CartController::class, 'store'])->name('cart.store');
     Route::get('/cart-products', [CartController::class, 'index'])->name('cart.products');
-
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
+    
 });
 
 
+Route::delete('cart-products/{id}', [CartController::class, 'deleteIteam'])->middleware('auth');
 
 
