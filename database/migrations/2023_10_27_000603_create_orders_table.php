@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->text('shipping_address');
             $table->string('contact_number'); 
-            $table->tinyInteger('status'); 
+            $table->tinyInteger('status')->default(0); 
             $table->timestamps();
         });
     }
