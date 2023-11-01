@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserController;
@@ -58,5 +59,7 @@ Route::middleware('auth')->prefix('admin')->group(function(){
 
 
 Route::delete('cart-products/{id}', [CartController::class, 'deleteIteam'])->middleware('auth');
+Route::post('orders', [OrderController::class, 'store'])->name('order-store')->middleware('auth');
+Route::post('orders-success', [OrderController::class, 'confirmed'])->name('orders.confirmed')->middleware('auth');
 
 
