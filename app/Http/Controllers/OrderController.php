@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CartProduct;
-use App\Models\Order;
+
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,17 +24,19 @@ class OrderController extends Controller
                                          ->where('id',$iteam['cart_product_id'])->first();
                                          $product = $cartProduct->product;
                                          $color = $cartProduct->color;
-                                         dd($cartProduct);
-             OrderProduct::create([
-                 'order_id' =>$order->id,
-                 'product_id' => $product->id,
-                 'product_title' => $product->title,
-                 'color_id' => $color->id,
-                 'color_name' => $color?->name,
-                 'unit_price'=>$product->price,
-                 'quantity' =>$iteam['qty'],
- 
-             ]);
+                                         $orderProduct = [
+                                            'order_id' =>$order->id,
+                                            'product_id' => $product->id,
+                                            'product_title' => $product->title,
+                                            'color_id' => $color?->id,
+                                            'color_name' => $color?->name,
+                                            'unit_price'=>$product->price,
+                                            'quantity' =>$iteam['qty'],
+                            
+                                         ];
+                                        
+                                        
+             OrderProduct::create($orderProduct);
  
          }
          $cartProduct =   auth()->user()->cartProducts()->delete();
@@ -49,7 +50,9 @@ class OrderController extends Controller
          }
     }
 
-    public function confirmed(){
-        view('order-confirmed');
+    public function confirmed()
+    {
+        return view('order-confirmed');
     }
+    
 }
