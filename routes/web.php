@@ -24,8 +24,7 @@ Route::get('/',[PublicController::class, 'welcome'])->name('welcome');
 
     Route::get('/dashboard',[DashboardController::class,'admin'])->name('dashboard')->middleware('auth');
     
-    Route::get('/{slug}',[PublicController::class, 'categoryWiseProducts'])->name('category.products');
-    Route::get('/product/{slug}',[PublicController::class, 'productDetails'])->name('product.details');
+    
 
 
 Route::middleware('auth')->prefix('admin')->group(function(){
@@ -60,6 +59,11 @@ Route::middleware('auth')->prefix('admin')->group(function(){
 
 Route::delete('cart-products/{id}', [CartController::class, 'deleteIteam'])->middleware('auth');
 Route::post('orders', [OrderController::class, 'store'])->name('order-store')->middleware('auth');
-Route::post('orders-success', [OrderController::class, 'confirmed'])->name('orders.confirmed')->middleware('auth');
+
+Route::get('orders-success', [OrderController::class, 'confirmed'])->name('orders.confirmed')->middleware('auth');
+
+Route::get('/{slug}',[PublicController::class, 'categoryWiseProducts'])->name('category.products');
+Route::get('/product/{slug}',[PublicController::class, 'productDetails'])->name('product.details');
+
 
 
